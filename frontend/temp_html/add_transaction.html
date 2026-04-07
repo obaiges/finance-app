@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Add Transaction | Financial Atelier</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-container": "#57676a",
+                        "inverse-on-surface": "#eef1f7",
+                        "secondary": "#516164",
+                        "surface": "#f7f9ff",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#005048",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#ebeef4",
+                        "primary-fixed-dim": "#95cfe7",
+                        "surface-container-high": "#e5e8ee",
+                        "secondary-fixed-dim": "#b9cacd",
+                        "on-primary-fixed": "#001f29",
+                        "secondary-fixed": "#d4e6e9",
+                        "primary-container": "#004d61",
+                        "primary": "#003544",
+                        "surface-variant": "#dfe3e8",
+                        "tertiary-fixed": "#9ff2e4",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#00201c",
+                        "outline": "#70787c",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#72c3b7",
+                        "surface-container-highest": "#dfe3e8",
+                        "on-surface": "#181c20",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f1f4fa",
+                        "on-primary-container": "#83bdd4",
+                        "on-surface-variant": "#40484c",
+                        "on-primary-fixed-variant": "#014d61",
+                        "tertiary-fixed-dim": "#84d5c8",
+                        "inverse-primary": "#95cfe7",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#b9eaff",
+                        "on-tertiary-fixed-variant": "#005048",
+                        "surface-dim": "#d7dae0",
+                        "on-secondary-fixed": "#0e1e21",
+                        "outline-variant": "#c0c8cc",
+                        "surface-bright": "#f7f9ff",
+                        "tertiary": "#003731",
+                        "on-secondary-fixed-variant": "#3a494c",
+                        "secondary-container": "#d4e6e9",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#28657a",
+                        "inverse-surface": "#2d3135",
+                        "on-background": "#181c20",
+                        "background": "#f7f9ff"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .bg-signature-gradient {
+            background: linear-gradient(135deg, #003544 0%, #004d61 100%);
+        }
+
+        input:focus {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface antialiased">
+    <!-- Shell Suppression Check: Task-focused sub-page implies departure from global nav. SideNavBar & TopNavBar are suppressed for focus. -->
+    <main class="min-h-screen flex items-center justify-center p-4 md:p-8">
+        <div
+            class="w-full max-w-3xl bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col md:flex-row">
+            <!-- Left Side: Contextual Summary (Editorial Focal Point) -->
+            <div class="w-full md:w-5/12 bg-surface-container-low p-8 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-8">
+                        <span class="material-symbols-outlined text-primary"
+                            style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+                        <span class="font-headline font-bold text-lg tracking-tight text-primary">Financial
+                            Atelier</span>
+                    </div>
+                    <h1 class="font-headline text-3xl font-extrabold text-on-surface leading-tight mb-4">Record a new
+                        movement</h1>
+                    <p class="text-on-surface-variant body-md leading-relaxed">Ensure your architectural ledger remains
+                        precise. Every entry strengthens the integrity of your wealth portfolio.</p>
+                </div>
+                <div class="mt-12 space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+                            <span class="material-symbols-outlined">security</span>
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold text-on-surface">Encrypted Entry</p>
+                            <p class="text-xs text-on-surface-variant">Validated by secure protocols</p>
+                        </div>
+                    </div>
+                    <img class="w-full h-32 object-cover rounded-xl grayscale opacity-50"
+                        data-alt="close-up of elegant dark marble texture with subtle teal and gold mineral veins in professional architectural lighting"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy02ltAYt2tnPlWsSVX4jAZo35qUNVoXr-mWT1mjcu9Q3AdlYp1MIGBAQlXC7f6H8bL4khVo8GiJzMbDTFFCXUzQB2bCxUVyn3wfE_cvoviQzVUR8L3nEiD5Cbx0OtKP10hVYD0qO9x3062h0P9y_WtrTMNhG3_Z5oo8DBew9F5WtdQ3Gp0V9YXLCt_6vDqaO5mxw43qMTCAjPMELx27-CmUDAVwkVdKWsDza9rFipHPsBUO8ve-sRDaiIlmLv2ACotkmTZzjTaUwL" />
+                </div>
+            </div>
+            <!-- Right Side: Form Logic -->
+            <div class="w-full md:w-7/12 p-8 md:p-12">
+                <form class="space-y-8">
+                    <!-- Amount Field -->
+                    <div class="group">
+                        <label
+                            class="block text-xs font-semibold uppercase tracking-widest text-on-surface-variant mb-2">Amount</label>
+                        <div
+                            class="relative flex items-baseline gap-2 border-b-2 border-surface-variant group-focus-within:border-surface-tint transition-all pb-1">
+                            <span class="text-2xl font-headline font-bold text-on-surface-variant">$</span>
+                            <input
+                                class="w-full bg-transparent border-none p-0 text-4xl font-headline font-extrabold text-primary placeholder:text-surface-variant focus:ring-0 tabular-nums"
+                                placeholder="0.00" type="number" />
+                        </div>
+                    </div>
+                    <!-- Grid for Split Fields -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Category -->
+                        <div>
+                            <label
+                                class="block text-xs font-semibold uppercase tracking-widest text-on-surface-variant mb-2">Category</label>
+                            <div class="relative">
+                                <select
+                                    class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 appearance-none focus:ring-0 text-sm font-medium text-on-surface">
+                                    <option disabled="" selected="" value="">Select category</option>
+                                    <option value="housing">Housing</option>
+                                    <option value="investments">Investments</option>
+                                    <option value="lifestyle">Lifestyle</option>
+                                    <option value="transport">Transport</option>
+                                </select>
+                                <div
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">
+                                    <span class="material-symbols-outlined text-sm">expand_more</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Date -->
+                        <div>
+                            <label
+                                class="block text-xs font-semibold uppercase tracking-widest text-on-surface-variant mb-2">Date</label>
+                            <input
+                                class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 focus:ring-0 text-sm font-medium text-on-surface"
+                                type="date" />
+                        </div>
+                    </div>
+                    <!-- Description -->
+                    <div>
+                        <label
+                            class="block text-xs font-semibold uppercase tracking-widest text-on-surface-variant mb-2">Description</label>
+                        <input
+                            class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 focus:ring-0 text-sm font-medium text-on-surface placeholder:text-on-surface-variant/50"
+                            placeholder="e.g. Quarterly Portfolio Rebalancing" type="text" />
+                    </div>
+                    <!-- Account & Tags -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label
+                                class="block text-xs font-semibold uppercase tracking-widest text-on-surface-variant mb-2">Account</label>
+                            <select
+                                class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 appearance-none focus:ring-0 text-sm font-medium text-on-surface">
+                                <option>Private Wealth Checking</option>
+                                <option>Corporate Treasury</option>
+                                <option>Offshore Fixed Income</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs font-semibold uppercase tracking-widest text-on-surface-variant mb-2">Tags</label>
+                            <input
+                                class="w-full bg-surface-container-low border-none rounded-xl px-4 py-3 focus:ring-0 text-sm font-medium text-on-surface"
+                                placeholder="Add labels..." type="text" />
+                        </div>
+                    </div>
+                    <!-- Split Transaction Toggle -->
+                    <div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-on-surface-variant">call_split</span>
+                            <div>
+                                <p class="text-sm font-semibold text-on-surface">Split transaction</p>
+                                <p class="text-xs text-on-surface-variant">Divide costs across multiple users</p>
+                            </div>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input class="sr-only peer" type="checkbox" value="" />
+                            <div
+                                class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container">
+                            </div>
+                        </label>
+                    </div>
+                    <!-- Actions -->
+                    <div class="flex flex-col-reverse md:flex-row gap-4 pt-4">
+                        <button
+                            class="w-full md:w-1/3 py-4 text-sm font-bold text-on-surface-variant hover:text-on-surface transition-colors"
+                            type="button">
+                            Discard
+                        </button>
+                        <button
+                            class="w-full md:w-2/3 py-4 bg-signature-gradient text-on-primary rounded-full font-headline font-bold text-base shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                            type="submit">
+                            Save Transaction
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <!-- Contextual FAB Suppression: Hide FAB on focused task screens -->
+</body>
+
+</html>
