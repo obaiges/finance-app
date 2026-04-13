@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard: React.FC = () => {
     const navigate = useNavigate();
-    
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     return (
         <div className="bg-surface font-body text-on-surface antialiased w-full text-left">
             {/* SideNavBar */}
@@ -55,8 +55,42 @@ const Dashboard: React.FC = () => {
                     <button className="text-slate-500 hover:text-cyan-600 transition-colors">
                         <span className="material-symbols-outlined">settings</span>
                     </button>
-                    <div className="h-8 w-8 rounded-full overflow-hidden bg-surface-container-high border-2 border-white shadow-sm">
-                        <img alt="User profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8tmuPz-Pv4MpgxfJXHWCRTFv5Z-xSpjjSf13CozvHmm7D_HV4_DMb5q8IcUWWXAQ9DFandgMNUvYymVDa3e7YMQHzv3_tKGlRNFogPtzabwOdk3kMIF3sIW9_m-a8iJZLEC6jafl4nIUeCo-DPVq6EtHVIFFG92axLED1Oqznq3CbS12tMkpqRnAwYj86H32Mb29QwC49mrdPO-t0D6eLHT8ySF28sU_6r0G4RyY5-0wlh33jTj95hUX4ZXiWLmDDRJ138Bq_E27u" />
+                    <div className="relative">
+                        <button 
+                            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                            className="h-8 w-8 rounded-full overflow-hidden bg-surface-container-high border-2 border-white shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-all block"
+                        >
+                            <img className="w-full h-full object-cover" alt="User profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8tmuPz-Pv4MpgxfJXHWCRTFv5Z-xSpjjSf13CozvHmm7D_HV4_DMb5q8IcUWWXAQ9DFandgMNUvYymVDa3e7YMQHzv3_tKGlRNFogPtzabwOdk3kMIF3sIW9_m-a8iJZLEC6jafl4nIUeCo-DPVq6EtHVIFFG92axLED1Oqznq3CbS12tMkpqRnAwYj86H32Mb29QwC49mrdPO-t0D6eLHT8ySF28sU_6r0G4RyY5-0wlh33jTj95hUX4ZXiWLmDDRJ138Bq_E27u" />
+                        </button>
+                        
+                        {isDropdownOpen && (
+                            <div className="absolute right-0 mt-3 w-56 bg-surface-container-lowest dark:bg-slate-800 rounded-xl shadow-lg border border-outline-variant/30 py-2 z-50 origin-top-right animate-in fade-in zoom-in-95 duration-200">
+                                <div className="px-4 py-3 border-b border-outline-variant/20 mb-1">
+                                    <p className="text-sm font-bold text-on-surface">My Account</p>
+                                    <p className="text-xs text-on-surface-variant">Manage your profile</p>
+                                </div>
+                                <button className="w-full text-left px-4 py-2.5 text-sm text-on-surface hover:bg-surface-container-low flex items-center gap-3 transition-colors">
+                                    <span className="material-symbols-outlined text-[20px] text-on-surface-variant">account_circle</span>
+                                    Account
+                                </button>
+                                <button className="w-full text-left px-4 py-2.5 text-sm text-on-surface hover:bg-surface-container-low flex items-center gap-3 transition-colors">
+                                    <span className="material-symbols-outlined text-[20px] text-on-surface-variant">settings</span>
+                                    Preferences
+                                </button>
+                                <div className="h-[1px] bg-outline-variant/20 my-1"></div>
+                                <button 
+                                    onClick={() => {
+                                        localStorage.removeItem('token');
+                                        localStorage.removeItem('username');
+                                        navigate('/login');
+                                    }}
+                                    className="w-full text-left px-4 py-2.5 text-sm text-error hover:bg-error/10 flex items-center gap-3 transition-colors font-bold mt-1"
+                                >
+                                    <span className="material-symbols-outlined text-[20px]">logout</span>
+                                    Logout
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             </header>

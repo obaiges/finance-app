@@ -1,13 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
     const navigate = useNavigate();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Mock authentication, redirect to dashboard
-        navigate('/dashboard');
+        setError('');
+        
+        try {
+            const response = await fetch('http://localhost:8080/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            const data = await response.json();
+            console.log(data)
+
+            if (data.success && data.token) {
+                // Store JWT token for future requests
+                localStorage.setItem('token', data.token);
+                // Store username if needed
+                localStorage.setItem('username', data.username);
+                // Login successful, redirect to dashboard
+                navigate('/dashboard');
+            } else {
+                setError(data.message || 'Invalid credentials');
+            }
+        } catch (err) {
+            setError('Failed to connect to the server');
+        }
     };
 
     return (
@@ -52,11 +80,24 @@ const Login: React.FC = () => {
                             <p className="text-on-surface-variant">Please enter your credentials to access your vaults.</p>
                         </header>
                         <form className="space-y-6" onSubmit={handleSubmit}>
-                            {/* Email Field */}
+                            {error && (
+                                <div className="bg-red-500/10 text-red-500 border border-red-500/20 p-3 rounded-lg text-sm text-center font-bold">
+                                    {error}
+                                </div>
+                            )}
+                            {/* Username Field */}
                             <div className="space-y-1.5 text-left">
-                                <label className="block text-sm font-label font-semibold text-on-surface-variant ml-1" htmlFor="email">Work Email</label>
+                                <label className="block text-sm font-label font-semibold text-on-surface-variant ml-1" htmlFor="username">Username / Email</label>
                                 <div className="relative">
-                                    <input className="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg text-on-surface placeholder:text-outline transition-all duration-200" id="email" placeholder="name@company.com" type="email" />
+                                    <input 
+                                        className="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg text-on-surface placeholder:text-outline transition-all duration-200 focus:ring-2 focus:ring-primary" 
+                                        id="username" 
+                                        placeholder="Username" 
+                                        type="text" 
+                                        value={username}
+                                        onChange={(e) => setUsername(e.target.value)}
+                                        required
+                                    />
                                 </div>
                             </div>
                             {/* Password Field */}
@@ -66,7 +107,15 @@ const Login: React.FC = () => {
                                     <a className="text-xs font-semibold text-primary hover:text-primary-container transition-colors" href="#">Forgot password?</a>
                                 </div>
                                 <div className="relative">
-                                    <input className="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg text-on-surface placeholder:text-outline transition-all duration-200" id="password" placeholder="••••••••" type="password" />
+                                    <input 
+                                        className="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg text-on-surface placeholder:text-outline transition-all duration-200 focus:ring-2 focus:ring-primary" 
+                                        id="password" 
+                                        placeholder="••••••••" 
+                                        type="password" 
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                    />
                                 </div>
                             </div>
                             {/* Remember Me */}
